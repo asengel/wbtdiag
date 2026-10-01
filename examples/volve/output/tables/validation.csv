@@ -1,0 +1,9 @@
+check,kind,passed,detail
+Oil volume conserved through resampling,integrity,True,"input 10,037,081 vs processed 10,037,081"
+Water volume conserved through resampling,integrity,True,"input 15,318,578 vs processed 15,318,578"
+Water_Inj volume conserved through resampling,integrity,True,"input 30,330,134 vs processed 30,330,134"
+"Water cut within [0, 1]",integrity,True,"min 0.000, max 0.967"
+Cumulative oil non-decreasing in every well,integrity,True,ok
+Final cumulative oil equals sum of oil volumes,integrity,True,ok
+No negative volumes after cleaning,integrity,True,0 negative
+One row per well and period,integrity,True,0 duplicates

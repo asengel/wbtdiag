@@ -1,0 +1,13 @@
+Well,Segment,Mechanism,Start_Mo,End_Mo,N_Points
+15/9-F-1 C,1,Normal displacement,1.49,24.51,24
+15/9-F-11,1,Channeling,1.53,38.54,38
+15/9-F-12,1,Normal displacement,0.48,1.46,2
+15/9-F-12,2,Near-wellbore breakthrough,2.46,4.47,3
+15/9-F-12,3,Constant WOR,5.47,7.49,3
+15/9-F-12,4,Multilayer channeling,8.49,102.49,92
+15/9-F-14,1,Constant WOR,0.51,3.53,4
+15/9-F-14,2,Multilayer channeling,4.53,5.54,2
+15/9-F-14,3,Near-wellbore breakthrough,6.55,8.49,3
+15/9-F-14,4,Multilayer channeling,9.49,9.49,1
+15/9-F-14,5,Near-wellbore breakthrough,10.5,96.51,87
+15/9-F-15 D,1,Channeling,9.48,30.47,21

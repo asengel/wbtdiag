@@ -1,0 +1,48 @@
+# Equinor Volve field — monthly well production, read straight from the
+# "Monthly Production Data" sheet of the original Volve_production_data.xlsx
+# in this folder. All paths below are relative to this file.
+#
+# Sheet layout: header row (Wellbore name, NPDCode, Year, Month, On Stream,
+# Oil, Gas, Water, GI, WI) followed by a units row (hrs, Sm3, ...) that is skipped.
+name: Volve (Equinor, NCS) — monthly
+
+input:
+  path: Volve_production_data.xlsx
+  sheet: Monthly Production Data
+  skiprows: [1]                  # the units row under the header
+
+columns:
+  well: Wellbore name
+  year: Year
+  month: Month
+  oil: Oil
+  water: Water
+  gas: Gas
+  water_inj: WI
+
+values_are: volume               # monthly volumes, Sm3
+resample: MS                     # already monthly; this just fills gap months with zeros
+volume_unit: Sm3
+wc_thresholds: [0.05, 0.50, 0.90]
+min_months: 3
+
+# Original classifier settings. Optional changes (see README, "Limitations"):
+#   min_log_span: 0.2        -> fewer false labels on noisy constant-WOR / coning
+#                               wells, but multilayer channeling is never detected
+#   nearwell_min_wor: 0.1    -> ignores WOR jumps that happen at WC < ~9 %
+#                               (15/9-F-14 then becomes Multilayer channeling)
+chan:
+  win: 7
+  min_log_span: 0.0
+  nearwell_min_wor: 0.0
+  const_slope: 0.10
+  worp_slope_neg: -0.15
+  worp_steep: 1.00
+  departure_factor: 3.0
+  nearwell_decade: 1.0
+  nearwell_dt: 3.0
+  min_seg: 4
+
+output_dir: output               # -> examples/volve/output/
+fig_format: png
+dpi: 150

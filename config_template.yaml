@@ -1,0 +1,43 @@
+# Template config — copy, rename and edit for your own dataset.
+# Tip: `wbtdiag inspect your_file.csv` lists the columns in your file.
+# All paths are relative to this config file. Easiest: put the data file and a
+# copy of this config in one folder (like examples/volve/).
+name: My field
+
+input:
+  path: my_field.csv             # .csv or .xlsx
+  sheet: 0                       # Excel only: sheet name or index
+  skiprows: null                 # e.g. [1] to skip a units row
+  date_format: null              # e.g. "%d/%b/%y", "%Y-%m-%d"; null = let pandas infer
+  dayfirst: true
+  thousands: null                # set to "," if numbers look like 1,234
+  sep: ","
+  encoding: utf-8-sig
+  query: null                    # optional row filter, e.g. "FLOW_KIND == 'production'"
+
+# Map YOUR column names (right) to the canonical names (left).
+# Required: well, date, oil, water.  Optional: gas, water_inj, cum_oil, cum_water.
+columns:
+  well: well name
+  date: Date
+  oil: CV.CDOIL
+  water: CV.CDWAT
+  gas: CV.CDGAS
+  water_inj: CV.CDWinj
+  cum_oil: CV.CUMOIL             # remove to compute cumulatives from rates/volumes
+  cum_water: CV.CUMWAT
+
+# 'volume' : each row is the volume produced in that row's period
+# 'rate'   : each row is an average per-day rate (OFM calendar-day CV.CD* style);
+#            converted to volume using days per row (1 for daily, days-in-month for monthly)
+values_are: rate
+resample: MS                     # MS = monthly; null = keep native sampling
+volume_unit: bbl
+wc_thresholds: [0.05, 0.50, 0.90]
+min_months: 3
+
+chan: {}                         # defaults; override any ChanParams field here
+
+output_dir: output
+fig_format: png                  # png | svg | pdf
+dpi: 150
