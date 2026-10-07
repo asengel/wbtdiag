@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wbtdiag"
+version = "0.1.0"
+description = "Water-breakthrough diagnostics for well-level production data"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.1",
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "matplotlib>=3.7",
+    "PyYAML>=6.0",
+    "openpyxl>=3.1",
+]
+
+[project.scripts]
+wbtdiag = "wbtdiag.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["wbtdiag*"]
